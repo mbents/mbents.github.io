@@ -22,6 +22,13 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://localhost:4000" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_link: https://twitter.com/MikeBents
 github_link:  https://github.com/mbents
+about_summary: "I am a software engineer with over 13 years of experience and a M.S. in Software Engineering. My experience is mainly on the server side, creating, deploying, and maintaining web services; integrating data; and streaming and processing data. 
+On the front end, I have worked on enterprise software for everything from customer data management to product design and development."
+about_languages: Java, JavaScript, C#
+about_cicd: Drone, Kubernetes, Docker
+about_databases: MongoDB, SQL Server, MySQL, PostgreSQL, Kafka, Redis
+about_frameworks: Spring, .NET, React, AngularJS
+
 
 # Build settings
 include: ['_pages']
@@ -29,8 +36,7 @@ kramdown:
   input: GFM
 markdown: kramdown
 theme: minima
-# plugins:
-#   - jekyll-feed
+
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list

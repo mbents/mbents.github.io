@@ -38,7 +38,6 @@ a:hover {
   text-decoration: underline;
 }
 header {
-  background: $header;
   padding: 0px 15px;
   text-align: center;
   margin: 50px 0 0;
@@ -47,6 +46,7 @@ header {
   justify-content: left;
   align-items: center;
   box-shadow: 0px 1px 1px RGBA(4, 25, 54, 0.1);
+  background: linear-gradient(to right, $header-left, $header-right);
 }
 main {
   padding: 0 15px;
@@ -93,7 +93,7 @@ aside {
           box-shadow: 0;
           &:hover,
           &:active {
-            background: $header;
+            background: $header-right;
             text-decoration: none;
             color: $main;
           }

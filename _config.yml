@@ -26,7 +26,8 @@ about_languages: Java, JavaScript, C#
 about_cicd: Drone, Kubernetes, Docker
 about_databases: MongoDB, SQL Server, MySQL, PostgreSQL, Kafka, Redis
 about_frameworks: Spring, .NET, React, AngularJS
-
+# Google Analytics
+google_analytics: UA-28947623-1
 
 # Build settings
 include: ['_pages']

@@ -22,4 +22,7 @@
   />
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
   {% seo %}
+  {% if site.google_analytics and jekyll.environment == 'production' %}
+  {% include analytics.html %}
+  {% endif %}
 </head>

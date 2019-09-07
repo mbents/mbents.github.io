@@ -13,11 +13,11 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: mike bents
+title: mikebents.com
 description: >- # this means to ignore newlines until "baseurl:"
  Experienced software engineer with advanced degree in software engineering. Server-side experience with web services, data integration, and streaming/processing data using Java, C#, and Node.js.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://mbents.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://mikebents.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_link: https://twitter.com/MikeBents
 github_link:  https://github.com/mbents
 about_summary: "I am a software engineer with over 13 years of experience and a M.S. in Software Engineering. My experience is mainly on the server side, creating, deploying, and maintaining web services; integrating data; and streaming and processing data. 

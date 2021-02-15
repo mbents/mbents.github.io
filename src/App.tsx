@@ -1,5 +1,5 @@
 import { AppBar, Badge, Container, CssBaseline, Divider, Drawer, IconButton, List, ListItem, ListItemText, makeStyles, Toolbar, Typography, useTheme } from '@material-ui/core'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Link, HashRouter } from 'react-router-dom'
 import React, { useState } from 'react'
 import './App.css'
 import clsx from 'clsx'
@@ -108,7 +108,8 @@ function App() {
 
   return (
     <div className={classes.root}>
-      <Router>
+      {/* <Router> */}
+      <HashRouter basename="/">
         <CssBaseline />
         <AppBar
           color="default"
@@ -195,7 +196,8 @@ function App() {
             </Switch>
           </Container>
         </main>
-      </Router>
+      </HashRouter>
+      {/* </Router> */}
     </div>
   )
 }

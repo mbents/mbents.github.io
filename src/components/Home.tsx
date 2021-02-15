@@ -14,8 +14,6 @@ const useStyles = makeStyles(() =>
 const Home: React.FC = () => {
   const classes = useStyles()
 
-  // TODO: do something with these sections. Maybe make them Cards and style them?
-  // Some kind of drop shadow or something like that?
   return (
     <Grid container spacing={3}>
       <Grid item xs={4}>
@@ -28,7 +26,7 @@ const Home: React.FC = () => {
       </Grid>
       <Grid item xs={4}>
         <Paper elevation={3} className={classes.paper}>
-          <Link variant="h6" color="inherit" href="/ballparks">BALLPARKS</Link>
+          <Link variant="h6" color="inherit" href="/#/ballparks">BALLPARKS</Link>
           <Typography variant="body1">
             Check out some ballparks!
           </Typography>
@@ -36,7 +34,7 @@ const Home: React.FC = () => {
       </Grid>
       <Grid item xs={4}>
         <Paper elevation={3} className={classes.paper}>
-          <Link variant="h6" color="inherit" href="/franchises">FRANCHISES</Link>
+          <Link variant="h6" color="inherit" href="/#/franchises">FRANCHISES</Link>
           <Typography variant="body1">
             Look up current and historical baseball franchises.
           </Typography>

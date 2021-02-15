@@ -13,9 +13,8 @@ export const BallparkStore = types.model('BallparkStore', {
   ballparks: types.optional(types.maybeNull(types.array(Ballpark)), null)
 }).actions(self => {
   const load = flow(function* loadData() {
-    const response = yield fetch('https://mbents.github.io/baseballdatabank/api/ballparks/')
+    const response = yield fetch('https://mikebents.com/baseballdatabank/api/ballparks/')
     const json = yield response.json()
-    // console.log(json)
     applySnapshot(self, {ballparks: [...json]})
   })
   

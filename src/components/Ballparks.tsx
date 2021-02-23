@@ -31,10 +31,10 @@ const Ballparks: React.FC = () => {
           </TableHead>
           <TableBody>
             {ballparkStore.ballparks?.length > 0 ? ballparkStore.ballparks?.map((ballpark: IBallpark, index: number) =>
-            <TableRow key={`${ballpark['park.alias']}-${index}`}>
-              <TableCell>{ballpark['park.name']}</TableCell>
-              <TableCell>{ballpark.city}</TableCell>
-              <TableCell>{ballpark.state}</TableCell>
+            <TableRow key={`${ballpark.AKA}-${index}`}>
+              <TableCell>{ballpark.NAME}</TableCell>
+              <TableCell>{ballpark.CITY}</TableCell>
+              <TableCell>{ballpark.STATE}</TableCell>
             </TableRow>) :
             <TableRow>
               <TableCell colSpan={3}>

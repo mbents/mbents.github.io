@@ -1,10 +1,13 @@
 export interface IBallpark {
-  "park.key"?: string,
-  "park.name"?: string,
-  "park.alias"?: string,
-  city?: string,
-  state?: string,
-  country?: string
+  PARKID?: string,
+  NAME?: string,
+  AKA?: string,
+  CITY?: string,
+  STATE?: string,
+  START?: string,
+  END?: string,
+  LEAGUE?: string,
+  NOTES?: string
 }
 
 export interface IBallparkStore {

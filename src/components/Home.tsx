@@ -18,9 +18,9 @@ const Home: React.FC = () => {
     <Grid container spacing={3}>
       <Grid item xs={4}>
         <Paper elevation={3} className={classes.paper}>
-          <Typography variant="h6">ABOUT ME</Typography>
+          <Link variant="h6" color="inherit" href="/#/about">ABOUT</Link>
           <Typography variant="body1">
-            Some things about me.
+            What is going on with this website?
           </Typography>
         </Paper>
       </Grid>

@@ -10,11 +10,13 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import HomeIcon from '@material-ui/icons/Home'
 import EventSeatIcon from '@material-ui/icons/EventSeat'
 import GroupIcon from '@material-ui/icons/Group'
+import PersonIcon from '@material-ui/icons/Person'
 import GitHubIcon from '@material-ui/icons/GitHub'
 import TwitterIcon from '@material-ui/icons/Twitter'
 import Home from './components/Home'
 import Ballparks from './components/Ballparks'
 import Franchises from './components/Franchises'
+import About from './components/About'
 import BallparkProvider from './providers/BallparkProvider'
 
 const drawerWidth = 240
@@ -108,7 +110,6 @@ function App() {
 
   return (
     <div className={classes.root}>
-      {/* <Router> */}
       <HashRouter basename="/">
         <CssBaseline />
         <AppBar
@@ -135,12 +136,12 @@ function App() {
             </Typography>
             <div className={classes.grow} />
             <div className={classes.badgeSection}>
-              <IconButton color="inherit" target="_blank" rel="noopener noreferrer" href="https://github.com/mbents">
+              <IconButton title="GitHub repos" color="inherit" href="https://github.com/mbents">
                 <Badge color="secondary">
                   <GitHubIcon />
                 </Badge>
               </IconButton>
-              <IconButton color="inherit" target="_blank" rel="noopener noreferrer" href="https://twitter.com/MikeBents">
+              <IconButton title="Twitter" color="inherit" href="https://twitter.com/MikeBents">
                 <Badge color="secondary">
                   <TwitterIcon />
                 </Badge>
@@ -170,15 +171,19 @@ function App() {
           <List>
             <ListItem button key="home" component={Link} to="/">
               <ListItemIcon><HomeIcon /></ListItemIcon>
-              <ListItemText primary={"Home"} />
+              <ListItemText primary="Home" />
+            </ListItem>
+            <ListItem button key="about" component={Link} to="/about">
+              <ListItemIcon><PersonIcon /></ListItemIcon>
+              <ListItemText primary="About" />
             </ListItem>
             <ListItem button key="ballparks" component={Link} to="/ballparks">
               <ListItemIcon><EventSeatIcon /></ListItemIcon>
-              <ListItemText primary={"Ballparks"} />
+              <ListItemText primary="Ballparks" />
             </ListItem>
             <ListItem button key="franchises" component={Link} to="/franchises">
               <ListItemIcon><GroupIcon /></ListItemIcon>
-              <ListItemText primary={"Franchises"} />
+              <ListItemText primary="Franchises" />
             </ListItem>
           </List>
         </Drawer>
@@ -192,12 +197,12 @@ function App() {
                   <Ballparks />
                 </BallparkProvider>
               </Route>
+              <Route path="/about" component={About} />
               <Route path="/" component={Home} />
             </Switch>
           </Container>
         </main>
       </HashRouter>
-      {/* </Router> */}
     </div>
   )
 }

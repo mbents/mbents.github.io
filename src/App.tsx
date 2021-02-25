@@ -1,5 +1,5 @@
 import { AppBar, Badge, Container, CssBaseline, Divider, Drawer, IconButton, List, ListItem, ListItemText, makeStyles, Toolbar, Typography, useTheme } from '@material-ui/core'
-import { BrowserRouter as Router, Switch, Route, Link, HashRouter } from 'react-router-dom'
+import { Switch, Route, Link, HashRouter } from 'react-router-dom'
 import React, { useState } from 'react'
 import './App.css'
 import clsx from 'clsx'

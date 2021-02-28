@@ -18,6 +18,7 @@ import Ballparks from './components/Ballparks'
 import Franchises from './components/Franchises'
 import About from './components/About'
 import BallparkProvider from './providers/BallparkProvider'
+import FranchiseProvider from './providers/FranchiseProvider'
 
 const drawerWidth = 240
 
@@ -191,7 +192,11 @@ function App() {
           <div className={classes.toolbar} />
           <Container maxWidth="lg">
             <Switch>
-              <Route path="/franchises" component={Franchises} />
+              <Route path="/franchises">
+                <FranchiseProvider>
+                  <Franchises />
+                </FranchiseProvider>
+              </Route>
               <Route path="/ballparks">
                 <BallparkProvider>
                   <Ballparks />

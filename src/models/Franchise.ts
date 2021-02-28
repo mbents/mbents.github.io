@@ -1,4 +1,4 @@
-import { applySnapshot, flow, types } from "mobx-state-tree";
+import { applySnapshot, flow, types } from "mobx-state-tree"
 
 const Franchise = types.model('Franchise', {
   Current_Franchise_ID: types.string,

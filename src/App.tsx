@@ -16,6 +16,7 @@ import TwitterIcon from '@material-ui/icons/Twitter'
 import Home from './components/Home'
 import Ballparks from './components/Ballparks'
 import Franchises from './components/Franchises'
+import Franchise from './components/Franchise'
 import About from './components/About'
 import BallparkProvider from './providers/BallparkProvider'
 import FranchiseProvider from './providers/FranchiseProvider'
@@ -192,9 +193,14 @@ function App() {
           <div className={classes.toolbar} />
           <Container maxWidth="lg">
             <Switch>
-              <Route path="/franchises">
+              <Route exact path="/franchises">
                 <FranchiseProvider>
                   <Franchises />
+                </FranchiseProvider>
+              </Route>
+              <Route path="/franchises/:franchiseId">
+                <FranchiseProvider>
+                  <Franchise />
                 </FranchiseProvider>
               </Route>
               <Route path="/ballparks">

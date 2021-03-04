@@ -18,6 +18,7 @@ import Ballparks from './components/Ballparks'
 import Franchises from './components/Franchises'
 import Franchise from './components/Franchise'
 import About from './components/About'
+import Schedule from './components/Schedule'
 import BallparkProvider from './providers/BallparkProvider'
 import FranchiseProvider from './providers/FranchiseProvider'
 
@@ -198,10 +199,13 @@ function App() {
                   <Franchises />
                 </FranchiseProvider>
               </Route>
-              <Route path="/franchises/:franchiseId">
+              <Route exact path="/franchises/:franchiseId">
                 <FranchiseProvider>
                   <Franchise />
                 </FranchiseProvider>
+              </Route>
+              <Route path="/franchises/:franchiseId/schedule/:year">
+                <Schedule />
               </Route>
               <Route path="/ballparks">
                 <BallparkProvider>

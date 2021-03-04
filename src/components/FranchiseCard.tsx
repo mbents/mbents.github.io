@@ -1,6 +1,6 @@
-import { Avatar, Button, Card, CardActions, CardContent, CardHeader, Collapse, Grid } from '@material-ui/core'
+import { Avatar, Button, Card, CardActions, CardContent, CardHeader, Collapse, Grid, Link } from '@material-ui/core'
 import { observer } from 'mobx-react-lite'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IFranchise } from '../stores/IFranchise'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import ExpandLessIcon from '@material-ui/icons/ExpandLess'
@@ -12,11 +12,14 @@ interface IFranchiseCard {
 const FranchiseCard: React.FC<IFranchiseCard> = (props) => {
   const { franchise } = props
   const [expanded, setExpanded] = useState<boolean>(false)
-  const startYear = franchise.First_Date_Nickname_Used?.slice(-4)
-  const endYear = franchise.Last_Date_Nickname_Used?.slice(-4) || new Date().getFullYear()
-  // TODO: parse startYear and endYear to create range of years for schedules
-  const years = Array.from({length:8},(v,k)=>k+1997)
-  console.log(years)
+  const [yearsArray, setYearsArray] = useState<Array<number>>([])
+  const startYear = parseInt(franchise.First_Date_Nickname_Used?.slice(-4) || new Date().getFullYear().toString())
+  const endYear = parseInt(franchise.Last_Date_Nickname_Used?.slice(-4) || new Date().getFullYear().toString())
+  
+  useEffect(() => {
+    const years = Array.from({length: (endYear - startYear + 1)},(v,k)=>k + startYear)
+    setYearsArray(years)
+  }, [])
 
   const handleClick = () => {
     setExpanded(!expanded)
@@ -45,7 +48,13 @@ const FranchiseCard: React.FC<IFranchiseCard> = (props) => {
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            Hello this text is hidden
+            <Grid container spacing={2}>
+            {yearsArray.length > 0 ? yearsArray.map((year: number) =>
+              <Grid item xs={2}>
+                <Link href={`/#/franchises/${franchise.Franchise_ID}/schedule/${year}`}>{year}</Link>
+              </Grid>
+            ) : null}
+            </Grid>
           </CardContent>
         </Collapse>
       </Card>

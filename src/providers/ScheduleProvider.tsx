@@ -4,8 +4,12 @@ import { ScheduleContext } from '../contexts/ScheduleContext'
 import { ScheduleStore } from '../models/Schedule'
 
 const ScheduleProvider = ({ children }: any) => {
-  const { year } = useParams<{ year: string }>()
-  const [scheduleStore] = useState(ScheduleStore.create({year: year, scheduledGames: []}))
+  const { franchiseId, year } = useParams<{ franchiseId: string, year: string }>()
+  const [scheduleStore] = useState(ScheduleStore.create({
+    year: year,
+    franchiseId: franchiseId,
+    scheduledGames: []
+  }))
 
   const { Provider } = ScheduleContext
   return (

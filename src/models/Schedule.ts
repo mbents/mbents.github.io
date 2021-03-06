@@ -1,4 +1,5 @@
 import { applySnapshot, flow, types } from "mobx-state-tree"
+import { IScheduledGame } from "../stores/ISchedule"
 
 const ScheduledGame = types.model('Schedule', {
   date: types.string,
@@ -17,12 +18,18 @@ const ScheduledGame = types.model('Schedule', {
 
 export const ScheduleStore = types.model('ScheduleStore', {
   year: types.string,
+  franchiseId: types.string,
   scheduledGames: types.optional(types.maybeNull(types.array(ScheduledGame)), null)
 }).actions(self => {
   const load = flow(function* () {
     const response = yield fetch(`https://www.mikebents.com/rs-data/schedules/${self.year}SKED.json`)
     const json = yield response.json()
-    applySnapshot(self, {year: self.year, scheduledGames: [...json]})
+    if (self.franchiseId) {
+      const franchiseGames = json.filter((item: IScheduledGame) => item.visiting_team === self.franchiseId || item.home_team === self.franchiseId)
+      applySnapshot(self, {year: self.year, franchiseId: self.franchiseId, scheduledGames: [...franchiseGames]})
+    } else {
+      applySnapshot(self, {year: self.year, franchiseId: self.franchiseId, scheduledGames: [...json]})
+    }
   })
 
   return {

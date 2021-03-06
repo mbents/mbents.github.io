@@ -16,9 +16,12 @@ import TwitterIcon from '@material-ui/icons/Twitter'
 import Home from './components/Home'
 import Ballparks from './components/Ballparks'
 import Franchises from './components/Franchises'
+import Franchise from './components/Franchise'
 import About from './components/About'
+import Schedule from './components/Schedule'
 import BallparkProvider from './providers/BallparkProvider'
 import FranchiseProvider from './providers/FranchiseProvider'
+import ScheduleProvider from './providers/ScheduleProvider'
 
 const drawerWidth = 240
 
@@ -192,10 +195,20 @@ function App() {
           <div className={classes.toolbar} />
           <Container maxWidth="lg">
             <Switch>
-              <Route path="/franchises">
+              <Route exact path="/franchises">
                 <FranchiseProvider>
                   <Franchises />
                 </FranchiseProvider>
+              </Route>
+              <Route exact path="/franchises/:franchiseId">
+                <FranchiseProvider>
+                  <Franchise />
+                </FranchiseProvider>
+              </Route>
+              <Route path="/franchises/:franchiseId/schedule/:year">
+                <ScheduleProvider>
+                  <Schedule />
+                </ScheduleProvider>
               </Route>
               <Route path="/ballparks">
                 <BallparkProvider>

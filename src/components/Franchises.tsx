@@ -1,3 +1,4 @@
+import { Link } from '@material-ui/core'
 import { observer } from 'mobx-react-lite'
 import MUIDataTable from 'mui-datatables'
 import React from 'react'
@@ -28,6 +29,11 @@ const Franchises: React.FC = () => {
       options: {
         filter: true,
         sort: true,
+        customBodyRender: (value: any) => (
+          <Link href={`/#/franchises/${value}`}>
+            {value}
+          </Link>
+        )
       }
     },
     {

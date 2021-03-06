@@ -21,6 +21,7 @@ import About from './components/About'
 import Schedule from './components/Schedule'
 import BallparkProvider from './providers/BallparkProvider'
 import FranchiseProvider from './providers/FranchiseProvider'
+import ScheduleProvider from './providers/ScheduleProvider'
 
 const drawerWidth = 240
 
@@ -205,7 +206,9 @@ function App() {
                 </FranchiseProvider>
               </Route>
               <Route path="/franchises/:franchiseId/schedule/:year">
-                <Schedule />
+                <ScheduleProvider>
+                  <Schedule />
+                </ScheduleProvider>
               </Route>
               <Route path="/ballparks">
                 <BallparkProvider>

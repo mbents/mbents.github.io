@@ -13,12 +13,14 @@ import GroupIcon from '@material-ui/icons/Group'
 import PersonIcon from '@material-ui/icons/Person'
 import GitHubIcon from '@material-ui/icons/GitHub'
 import TwitterIcon from '@material-ui/icons/Twitter'
+import CalendarTodayIcon from '@material-ui/icons/CalendarToday'
 import Home from './components/Home'
 import Ballparks from './components/Ballparks'
 import Franchises from './components/Franchises'
 import Franchise from './components/Franchise'
 import About from './components/About'
 import Schedule from './components/Schedule'
+import Schedules from './components/Schedules'
 import BallparkProvider from './providers/BallparkProvider'
 import FranchiseProvider from './providers/FranchiseProvider'
 import ScheduleProvider from './providers/ScheduleProvider'
@@ -189,12 +191,21 @@ function App() {
               <ListItemIcon><GroupIcon /></ListItemIcon>
               <ListItemText primary="Franchises" />
             </ListItem>
+            <ListItem button key="schedules" component={Link} to="/schedules">
+              <ListItemIcon><CalendarTodayIcon /></ListItemIcon>
+              <ListItemText primary="Schedules" />
+            </ListItem>
           </List>
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <Container maxWidth="lg">
             <Switch>
+              <Route path="/schedules">
+                <FranchiseProvider>
+                  <Schedules />
+                </FranchiseProvider>
+              </Route>
               <Route exact path="/franchises">
                 <FranchiseProvider>
                   <Franchises />

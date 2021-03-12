@@ -3,11 +3,12 @@ import { useParams } from 'react-router-dom'
 import { ScheduleContext } from '../contexts/ScheduleContext'
 import { ScheduleStore } from '../models/Schedule'
 
-const ScheduleProvider = ({ children }: any) => {
+const ScheduleProvider = ({ children, selectedFranchise, selectedYear, selectedDate }: any) => {
   const { franchiseId, year } = useParams<{ franchiseId: string, year: string }>()
   const [scheduleStore] = useState(ScheduleStore.create({
-    year: year,
-    franchiseId: franchiseId,
+    year: year || selectedYear || '',
+    franchiseId: franchiseId || selectedFranchise || '',
+    date: selectedDate || '',
     scheduledGames: []
   }))
 

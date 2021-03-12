@@ -1,18 +1,16 @@
 import { Card, CardHeader, Grid, Typography } from '@material-ui/core'
 import { observer } from 'mobx-react-lite'
 import React from 'react'
-import { useParams } from 'react-router-dom'
 import { useScheduleStore } from '../contexts/ScheduleContext'
 import { IScheduledGame } from '../stores/ISchedule'
 
 const Schedule: React.FC = () => {
-  const { franchiseId, year } = useParams<{ franchiseId: string, year: string }>()
   const scheduleStore = useScheduleStore()
-  const { scheduledGames } = scheduleStore
+  const { scheduledGames, franchiseId, year } = scheduleStore
 
   const parseDate = (date: string | undefined) => {
     if (date) {
-      const parsedDateStr = `${date.slice(0, 4)}-${date.slice(4, 6)}-${date.slice(-2)}`
+      const parsedDateStr = `${date.slice(4, 6)}-${date.slice(-2)}-${date.slice(0, 4)}`
       return new Date(parsedDateStr).toDateString()
     } else {
       return 'Unknown date'
@@ -38,7 +36,7 @@ const Schedule: React.FC = () => {
     <React.Fragment>
       <Typography variant="h6">{`Schedule for ${franchiseId} from ${year}`}</Typography>
       <Grid container spacing={1}>
-      {scheduledGames.map((game: IScheduledGame, index: number) =>
+      {scheduledGames?.length > 0 ? scheduledGames.map((game: IScheduledGame, index: number) =>
         <Grid item xs={4} key={`${game.date}-${game.game_number}-${index}`}>
           <Card key={`${index}-${game.date}`} variant="outlined">
             <CardHeader
@@ -47,7 +45,7 @@ const Schedule: React.FC = () => {
             />
           </Card>
         </Grid>
-      )}
+      ) : <Typography variant="h6">No games to display.</Typography>}
       </Grid>
     </React.Fragment>
   )

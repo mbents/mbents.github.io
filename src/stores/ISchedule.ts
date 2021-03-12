@@ -16,5 +16,6 @@ export interface IScheduledGame {
 export interface IScheduleStore {
   year?: string,
   franchiseId?: string,
+  date?: string,
   scheduledGames?: Array<IScheduledGame>
 }

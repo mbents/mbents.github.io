@@ -5,12 +5,12 @@ import { ScheduleStore } from '../models/Schedule'
 
 const ScheduleProvider = ({ children, selectedFranchise, selectedYear, selectedDate }: any) => {
   const { franchiseId, year } = useParams<{ franchiseId: string, year: string }>()
-  const [scheduleStore] = useState(ScheduleStore.create({
+  const scheduleStore = ScheduleStore.create({
     year: year || selectedYear || '',
     franchiseId: franchiseId || selectedFranchise || '',
     date: selectedDate || '',
     scheduledGames: []
-  }))
+  })
 
   const { Provider } = ScheduleContext
   return (

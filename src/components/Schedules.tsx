@@ -1,4 +1,4 @@
-import { Button, Divider, FormControl, Grid, InputLabel, Select, TextField, Typography } from '@material-ui/core'
+import { Button, Divider, FormControl, Grid, InputLabel, makeStyles, Select, TextField, Typography } from '@material-ui/core'
 import { observer } from 'mobx-react-lite'
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import { useFranchiseStore } from '../contexts/FranchiseContext'
@@ -12,7 +12,8 @@ const Schedules: React.FC = () => {
   const [selectedFranchiseId, setSelectedFranchiseId] = useState('')
   const [selectedYear, setSelectedYear] = useState('')
   const [selectedDate, setSelectedDate] = useState('')
-  const [showResults, setShowResults] = useState<boolean>(false)
+  const [showDateSearch, setShowDateSearch] = useState<boolean>(false)
+  const [showFranchiseSearch, setShowFranchiseSearch] = useState<boolean>(false)
   const [yearsArray, setYearsArray] = useState<Array<number>>([])
 
   const handleFranchiseChange = (event: ChangeEvent<any>) => {
@@ -27,8 +28,17 @@ const Schedules: React.FC = () => {
     setSelectedDate(event.target.value)
   }
 
-  const handleClick = () => {
-    setShowResults(true)
+  const handleClick = (source: 'franchise' | 'date') => {
+    if (source === 'date') {
+      setSelectedFranchiseId('')
+      setSelectedYear('')
+      setShowDateSearch(true)
+      setShowFranchiseSearch(false)
+    } else if (source === 'franchise') {
+      setSelectedDate('')
+      setShowFranchiseSearch(true)
+      setShowDateSearch(false)
+    }
   }
 
   useEffect(() => {
@@ -78,8 +88,8 @@ const Schedules: React.FC = () => {
             </Select>
           </FormControl>
         </Grid>
-        <Grid item xs>
-          <Button variant="contained" size="large" color="primary" onClick={handleClick}>
+        <Grid item>
+          <Button variant="contained" size="large" color="primary" onClick={() => handleClick('franchise')}>
             Search
           </Button>
         </Grid>
@@ -95,7 +105,7 @@ const Schedules: React.FC = () => {
           />
         </Grid>
         <Grid item>
-          <Button variant="contained" size="large" color="primary" onClick={handleClick}>
+          <Button variant="contained" size="large" color="primary" onClick={() => handleClick('date')}>
             Search
           </Button>
         </Grid>
@@ -105,14 +115,21 @@ const Schedules: React.FC = () => {
       </Grid>
       <Grid container spacing={2}>
         <Grid item>
-          {showResults &&
-          <ScheduleProvider
-            selectedFranchise={selectedFranchiseId}
-            selectedYear={selectedYear}
-            selectedDate={selectedDate}
-          >
-            <Schedule />
-          </ScheduleProvider>}
+          {showDateSearch ?
+            <ScheduleProvider
+              selectedDate={selectedDate}
+              selectedFranchise={''}
+              selectedYear={''}
+            >
+              <Schedule />
+            </ScheduleProvider> : showFranchiseSearch ?
+            <ScheduleProvider
+              selectedFranchise={selectedFranchiseId}
+              selectedYear={selectedYear}
+              selectedDate={''}
+            >
+              <Schedule />
+            </ScheduleProvider> : null}
         </Grid>
       </Grid>
     </React.Fragment>

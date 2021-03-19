@@ -1,4 +1,4 @@
-import { Avatar, Button, Card, CardActions, CardContent, CardHeader, Collapse, Grid, Link } from '@material-ui/core'
+import { Avatar, Button, Card, CardActions, CardContent, CardHeader, Collapse, Divider, Grid, Link, Typography } from '@material-ui/core'
 import { observer } from 'mobx-react-lite'
 import React, { useEffect, useState } from 'react'
 import { IFranchise } from '../stores/IFranchise'
@@ -37,6 +37,19 @@ const FranchiseCard: React.FC<IFranchiseCard> = (props) => {
           title={`${franchise.Location_Name} ${franchise.Nickname}`}
           subheader={`${franchise.First_Date_Nickname_Used} - ${franchise.Last_Date_Nickname_Used}`}
         />
+        <CardContent>
+          <Grid container justify="space-evenly">
+            <Grid item>
+              <Typography>{`${franchise.City}, ${franchise.State}`}</Typography>
+            </Grid>
+            <Grid item xs={1}>
+              <Divider orientation="vertical" />
+            </Grid>
+            <Grid item>
+              <Typography>{`${franchise.League} ${franchise.Division}`}</Typography>
+            </Grid>
+          </Grid>
+        </CardContent>
         <CardActions>
           <Button
             size="small"

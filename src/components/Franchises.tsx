@@ -3,6 +3,7 @@ import { observer } from 'mobx-react-lite'
 import MUIDataTable from 'mui-datatables'
 import React from 'react'
 import { useFranchiseStore } from '../contexts/FranchiseContext'
+import FranchiseBreadcrumbs from './FranchiseBreadcrumbs'
 
 const Franchises: React.FC = () => {
   const franchiseStore = useFranchiseStore()
@@ -113,6 +114,7 @@ const Franchises: React.FC = () => {
 
   return (
     <React.Fragment>
+      <FranchiseBreadcrumbs />
       {franchises?.length > 0 &&
       <MUIDataTable
         title={"Franchises"}

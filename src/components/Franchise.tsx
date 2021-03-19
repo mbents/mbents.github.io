@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { useFranchiseStore } from '../contexts/FranchiseContext'
 import { IFranchise } from '../stores/IFranchise'
 import FranchiseCard from './FranchiseCard'
+import FranchiseBreadcrumbs from './FranchiseBreadcrumbs'
 
 const Franchise: React.FC = () => {
   const { franchiseId } = useParams<{ franchiseId: string }>()
@@ -13,7 +14,8 @@ const Franchise: React.FC = () => {
 
   return (
     <React.Fragment>
-      <Typography variant="h6">Franchise cards for {franchiseId}</Typography>
+      <FranchiseBreadcrumbs franchiseId={franchiseId} />
+      <Typography variant="h6" gutterBottom>Franchise cards for {franchiseId}</Typography>
       <Grid container spacing={2}>
         {franchises?.map((franchise: IFranchise, index: number) =>
           franchise.Franchise_ID === franchiseId ?

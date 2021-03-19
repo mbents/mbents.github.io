@@ -1,5 +1,6 @@
 import { createStyles, Link, makeStyles, Paper, Typography } from '@material-ui/core'
 import React from 'react'
+import GenericBreadcrumbs from './GenericBreadcrumbs'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -34,6 +35,7 @@ const About: React.FC = () => {
 
   return (
     <div className={classes.container}>
+      <GenericBreadcrumbs breadcrumb="About" />
       <Typography align="right" className={classes.dateStamp}>February 24, 2021</Typography>
       <Typography variant="h5" className={classes.sectionHeader}>What's all this then</Typography>
       <Typography variant="body1" className={classes.sectionBreak}>

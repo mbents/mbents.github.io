@@ -5,6 +5,7 @@ import { useFranchiseStore } from '../contexts/FranchiseContext'
 import ScheduleProvider from '../providers/ScheduleProvider'
 import { IFranchise } from '../stores/IFranchise'
 import Schedule from './Schedule'
+import GenericBreadcrumbs from './GenericBreadcrumbs'
 
 const Schedules: React.FC = () => {
   const franchiseStore = useFranchiseStore()
@@ -48,6 +49,7 @@ const Schedules: React.FC = () => {
 
   return (
     <React.Fragment>
+      <GenericBreadcrumbs breadcrumb="Schedules" />
       <Typography variant="h6">Schedule search</Typography>
       <Grid container spacing={2}>
         <Grid item>

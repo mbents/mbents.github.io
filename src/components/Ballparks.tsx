@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite'
 import React from 'react'
 import { useBallparkStore } from '../contexts/BallparkContext'
 import MUIDataTable from 'mui-datatables'
+import GenericBreadcrumbs from './GenericBreadcrumbs'
 
 const Ballparks: React.FC = () => {
   const ballparkStore = useBallparkStore()
@@ -91,6 +92,7 @@ const Ballparks: React.FC = () => {
 
   return (
     <React.Fragment>
+      <GenericBreadcrumbs breadcrumb="Ballparks" />
       {ballparks?.length > 0 &&
       <MUIDataTable
         title={"Ballparks"}

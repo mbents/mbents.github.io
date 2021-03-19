@@ -47,6 +47,14 @@ const Home: React.FC = () => {
             </Typography>
           </Paper>
         </Grid>
+        <Grid item xs={4}>
+          <Paper elevation={3} className={classes.paper}>
+            <Link variant="h6" color="inherit" href="/#/schedules">SCHEDULES</Link>
+            <Typography variant="body1">
+              Look up schedules by franchise or date.
+            </Typography>
+          </Paper>
+        </Grid>
       </Grid>
      <Snackbar
       anchorOrigin={{

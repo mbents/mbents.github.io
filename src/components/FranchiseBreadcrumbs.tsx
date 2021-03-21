@@ -9,11 +9,12 @@ const useStyles = makeStyles(() => ({
 }))
 
 interface IFranchiseBreadcrumbs {
-  franchiseId?: string
+  franchiseId?: string,
+  year?: string
 }
 
 export default function FranchiseBreadcrumbs(props: IFranchiseBreadcrumbs) {
-  const { franchiseId } = props
+  const { franchiseId, year } = props
   const classes = useStyles()
   return (
     <Breadcrumbs className={classes.breadcrumbMargin} separator={<NavigateNextIcon fontSize="small" />}>
@@ -25,8 +26,13 @@ export default function FranchiseBreadcrumbs(props: IFranchiseBreadcrumbs) {
         Franchises
       </Link> :
       <Typography color="textPrimary">Franchises</Typography>}
-      {franchiseId &&
+      {franchiseId && year ?
+      <Link color="inherit" href={`/#/franchises/${franchiseId}`}>
+        {franchiseId}
+      </Link> :
       <Typography color="textPrimary">{franchiseId}</Typography>}
+      {year &&
+      <Typography color="textPrimary">{year}</Typography>}
     </Breadcrumbs>
   )
 }

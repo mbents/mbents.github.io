@@ -3,10 +3,16 @@ import { observer } from 'mobx-react-lite'
 import React from 'react'
 import { useScheduleStore } from '../contexts/ScheduleContext'
 import { IScheduledGame } from '../stores/ISchedule'
+import FranchiseBreadcrumbs from './FranchiseBreadcrumbs'
 
-const Schedule: React.FC = () => {
+interface ISchedule {
+  showBreadcrumbs?: boolean
+}
+
+const Schedule: React.FC<ISchedule> = (props) => {
   const scheduleStore = useScheduleStore()
-  const { scheduledGames, franchiseId, year } = scheduleStore
+  const { scheduledGames, franchiseId, year, date } = scheduleStore
+  const { showBreadcrumbs } = props
 
   const parseDate = (date: string | undefined) => {
     if (date) {
@@ -34,7 +40,12 @@ const Schedule: React.FC = () => {
   
   return (
     <React.Fragment>
-      <Typography variant="h6">{`Schedule for ${franchiseId} from ${year}`}</Typography>
+      {showBreadcrumbs &&
+      <FranchiseBreadcrumbs franchiseId={franchiseId} year={year} />}
+      {franchiseId && year ?
+      <Typography variant="h6">{`Schedule for ${franchiseId} from ${year}`}</Typography> :
+      <Typography variant="h6">{`Schedule for ${date}`}</Typography>
+      }
       <Grid container spacing={1}>
       {scheduledGames?.length > 0 ? scheduledGames.map((game: IScheduledGame, index: number) =>
         <Grid item xs={4} key={`${game.date}-${game.game_number}-${index}`}>

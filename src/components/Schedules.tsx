@@ -42,6 +42,10 @@ const Schedules: React.FC = () => {
     }
   }
 
+  const getYear = (date: string | undefined) => {
+    return date ? date.slice(-4) : 'present'
+  }
+
   useEffect(() => {
     const years = Array.from({length: (2020 - 1877 + 1)},(v,k)=>k + 1877)
     setYearsArray(years)
@@ -66,7 +70,8 @@ const Schedules: React.FC = () => {
               <option value="" />
               {franchises.map((item: IFranchise, index: number) =>
                 <option key={`${item.Current_Franchise_ID}-${index}`} value={item.Current_Franchise_ID}>
-                  {`[${item.Current_Franchise_ID}] ${item.Location_Name} ${item.Nickname}`}
+                  {`[${item.Current_Franchise_ID}] ${item.Location_Name} ${item.Nickname} 
+                  (${getYear(item.First_Date_Nickname_Used)}-${getYear(item.Last_Date_Nickname_Used)})`}
                 </option>
               )}
             </Select>

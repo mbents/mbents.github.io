@@ -218,7 +218,7 @@ function App() {
               </Route>
               <Route path="/franchises/:franchiseId/schedule/:year">
                 <ScheduleProvider>
-                  <Schedule />
+                  <Schedule showBreadcrumbs={true} />
                 </ScheduleProvider>
               </Route>
               <Route path="/ballparks">

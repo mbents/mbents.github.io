@@ -11,7 +11,7 @@ interface ISchedule {
 
 const Schedule: React.FC<ISchedule> = (props) => {
   const scheduleStore = useScheduleStore()
-  const { scheduledGames, franchiseId, year } = scheduleStore
+  const { scheduledGames, franchiseId, year, date } = scheduleStore
   const { showBreadcrumbs } = props
 
   const parseDate = (date: string | undefined) => {
@@ -42,7 +42,10 @@ const Schedule: React.FC<ISchedule> = (props) => {
     <React.Fragment>
       {showBreadcrumbs &&
       <FranchiseBreadcrumbs franchiseId={franchiseId} year={year} />}
-      <Typography variant="h6">{`Schedule for ${franchiseId} from ${year}`}</Typography>
+      {franchiseId && year ?
+      <Typography variant="h6">{`Schedule for ${franchiseId} from ${year}`}</Typography> :
+      <Typography variant="h6">{`Schedule for ${date}`}</Typography>
+      }
       <Grid container spacing={1}>
       {scheduledGames?.length > 0 ? scheduledGames.map((game: IScheduledGame, index: number) =>
         <Grid item xs={4} key={`${game.date}-${game.game_number}-${index}`}>

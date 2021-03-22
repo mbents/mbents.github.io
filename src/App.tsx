@@ -1,6 +1,6 @@
-import { AppBar, Badge, Container, CssBaseline, Divider, Drawer, IconButton, makeStyles, Toolbar, Typography, useTheme } from '@material-ui/core'
-import { Switch, Route, HashRouter } from 'react-router-dom'
-import React, { useState } from 'react'
+import { AppBar, Badge, CssBaseline, Divider, Drawer, IconButton, makeStyles, Toolbar, Typography, useTheme } from '@material-ui/core'
+import { HashRouter } from 'react-router-dom'
+import { useState } from 'react'
 import './App.css'
 import clsx from 'clsx'
 import MenuIcon from '@material-ui/icons/Menu'
@@ -8,17 +8,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import GitHubIcon from '@material-ui/icons/GitHub'
 import TwitterIcon from '@material-ui/icons/Twitter'
-import Home from './components/Home'
-import Ballparks from './components/Ballparks'
-import Franchises from './components/Franchises'
-import Franchise from './components/Franchise'
-import About from './components/About'
-import Schedule from './components/Schedule'
-import Schedules from './components/Schedules'
-import BallparkProvider from './providers/BallparkProvider'
-import FranchiseProvider from './providers/FranchiseProvider'
-import ScheduleProvider from './providers/ScheduleProvider'
 import NavMenuList from './components/NavMenuList'
+import RouteContainer from './components/RouteContainer'
 
 const drawerWidth = 240
 
@@ -173,37 +164,7 @@ function App() {
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />
-          <Container maxWidth="lg">
-            <Switch>
-              <Route path="/schedules">
-                <FranchiseProvider>
-                  <Schedules />
-                </FranchiseProvider>
-              </Route>
-              <Route exact path="/franchises">
-                <FranchiseProvider>
-                  <Franchises />
-                </FranchiseProvider>
-              </Route>
-              <Route exact path="/franchises/:franchiseId">
-                <FranchiseProvider>
-                  <Franchise />
-                </FranchiseProvider>
-              </Route>
-              <Route path="/franchises/:franchiseId/schedule/:year">
-                <ScheduleProvider>
-                  <Schedule showBreadcrumbs={true} />
-                </ScheduleProvider>
-              </Route>
-              <Route path="/ballparks">
-                <BallparkProvider>
-                  <Ballparks />
-                </BallparkProvider>
-              </Route>
-              <Route path="/about" component={About} />
-              <Route path="/" component={Home} />
-            </Switch>
-          </Container>
+          <RouteContainer />
         </main>
       </HashRouter>
     </div>

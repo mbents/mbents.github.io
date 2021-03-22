@@ -1,22 +1,13 @@
-import { AppBar, Badge, Collapse, Container, CssBaseline, Divider, Drawer, IconButton, List, ListItem, ListItemText, makeStyles, Toolbar, Typography, useTheme } from '@material-ui/core'
-import { Switch, Route, Link, HashRouter } from 'react-router-dom'
+import { AppBar, Badge, Container, CssBaseline, Divider, Drawer, IconButton, makeStyles, Toolbar, Typography, useTheme } from '@material-ui/core'
+import { Switch, Route, HashRouter } from 'react-router-dom'
 import React, { useState } from 'react'
 import './App.css'
 import clsx from 'clsx'
 import MenuIcon from '@material-ui/icons/Menu'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import HomeIcon from '@material-ui/icons/Home'
-import EventSeatIcon from '@material-ui/icons/EventSeat'
-import GroupIcon from '@material-ui/icons/Group'
-import PersonIcon from '@material-ui/icons/Person'
 import GitHubIcon from '@material-ui/icons/GitHub'
 import TwitterIcon from '@material-ui/icons/Twitter'
-import CalendarTodayIcon from '@material-ui/icons/CalendarToday'
-import SportsBaseballIcon from '@material-ui/icons/SportsBaseball'
-import ExpandMore from '@material-ui/icons/ExpandMore'
-import ExpandLess from '@material-ui/icons/ExpandLess'
 import Home from './components/Home'
 import Ballparks from './components/Ballparks'
 import Franchises from './components/Franchises'
@@ -27,6 +18,7 @@ import Schedules from './components/Schedules'
 import BallparkProvider from './providers/BallparkProvider'
 import FranchiseProvider from './providers/FranchiseProvider'
 import ScheduleProvider from './providers/ScheduleProvider'
+import NavMenuList from './components/NavMenuList'
 
 const drawerWidth = 240
 
@@ -108,7 +100,6 @@ function App() {
   const classes = useStyles()
   const theme = useTheme()
   const [open, setOpen] = useState(false)
-  const [showBaseball, setShowBaseball] = useState(false)
 
   const handleDrawerOpen = () => {
     setOpen(true)
@@ -116,10 +107,6 @@ function App() {
 
   const handleDrawerClose = () => {
     setOpen(false)
-  }
-
-  const handleClick = () => {
-    setShowBaseball(!showBaseball)
   }
 
   return (
@@ -182,39 +169,7 @@ function App() {
             </IconButton>
           </div>
           <Divider />
-          <List>
-            <ListItem button key="home" component={Link} to="/">
-              <ListItemIcon><HomeIcon /></ListItemIcon>
-              <ListItemText primary="Home" />
-            </ListItem>
-            <ListItem button key="about" component={Link} to="/about">
-              <ListItemIcon><PersonIcon /></ListItemIcon>
-              <ListItemText primary="About" />
-            </ListItem>
-            <Divider />
-            <ListItem button key="baseball" onClick={handleClick}>
-              <ListItemIcon>
-                <SportsBaseballIcon />
-                {showBaseball ? <ExpandLess /> : <ExpandMore />}
-              </ListItemIcon>
-              <ListItemText primary="Baseball stuff" />
-            </ListItem>
-            <Collapse in={showBaseball} timeout="auto" unmountOnExit>
-              <ListItem button key="ballparks" component={Link} to="/ballparks">
-                <ListItemIcon><EventSeatIcon /></ListItemIcon>
-                <ListItemText primary="Ballparks" />
-              </ListItem>
-              <ListItem button key="franchises" component={Link} to="/franchises">
-                <ListItemIcon><GroupIcon /></ListItemIcon>
-                <ListItemText primary="Franchises" />
-              </ListItem>
-              <ListItem button key="schedules" component={Link} to="/schedules">
-                <ListItemIcon><CalendarTodayIcon /></ListItemIcon>
-                <ListItemText primary="Schedules" />
-              </ListItem>
-            </Collapse>
-            <Divider />
-          </List>
+          <NavMenuList />
         </Drawer>
         <main className={classes.content}>
           <div className={classes.toolbar} />

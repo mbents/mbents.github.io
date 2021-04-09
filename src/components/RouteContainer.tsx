@@ -14,6 +14,7 @@ import BallparkProvider from '../providers/BallparkProvider'
 import FranchiseProvider from '../providers/FranchiseProvider'
 import ScheduleProvider from '../providers/ScheduleProvider'
 import BoxscoreProvider from '../providers/BoxscoreProvider'
+import PersonProvider from '../providers/PersonProvider'
 
 const RouteContainer: React.FC = () => {
   return (
@@ -21,7 +22,11 @@ const RouteContainer: React.FC = () => {
       <Switch>
         <Route path="/boxscores/:gameId">
           <BoxscoreProvider>
-            <Boxscores />
+            <BallparkProvider>
+              <PersonProvider>
+                <Boxscores />
+              </PersonProvider>
+            </BallparkProvider>
           </BoxscoreProvider>
         </Route>
         <Route path="/schedules">

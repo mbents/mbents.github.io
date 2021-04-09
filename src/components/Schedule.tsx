@@ -1,4 +1,4 @@
-import { Card, CardHeader, Grid, Typography } from '@material-ui/core'
+import { Card, CardHeader, Grid, Link, Typography } from '@material-ui/core'
 import { observer } from 'mobx-react-lite'
 import React from 'react'
 import { useScheduleStore } from '../contexts/ScheduleContext'
@@ -51,7 +51,11 @@ const Schedule: React.FC<ISchedule> = (props) => {
         <Grid item xs={4} key={`${game.date}-${game.game_number}-${index}`}>
           <Card key={`${index}-${game.date}`} variant="outlined">
             <CardHeader
-              title={`${game.visiting_team} @ ${game.home_team}`}
+              title={
+                <Link variant="h6" color="inherit" href={`/#/boxscores/${game.home_team}${game.date}${game.game_number}`}>
+                {`${game.visiting_team} @ ${game.home_team}`}
+                </Link>
+              }
               subheader={`${parseDate(game.date)} | Time of day: ${parseTimeOfDay(game.time_of_day)}`}
             />
           </Card>

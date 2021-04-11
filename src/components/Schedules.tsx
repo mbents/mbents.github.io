@@ -1,4 +1,4 @@
-import { Button, Divider, FormControl, Grid, InputLabel, makeStyles, Select, TextField, Typography } from '@material-ui/core'
+import { Button, Divider, FormControl, Grid, InputLabel, Select, TextField, Typography } from '@material-ui/core'
 import { observer } from 'mobx-react-lite'
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import { useFranchiseStore } from '../contexts/FranchiseContext'
@@ -46,6 +46,11 @@ const Schedules: React.FC = () => {
     return date ? date.slice(-4) : 'present'
   }
 
+   const getFranchiseIdForProvider = (input: string) => {
+     const vals = input.split('-')
+     return vals[0]
+   }
+
   useEffect(() => {
     const years = Array.from({length: (2020 - 1877 + 1)},(v,k)=>k + 1877)
     setYearsArray(years)
@@ -69,7 +74,7 @@ const Schedules: React.FC = () => {
             >
               <option value="" />
               {franchises.map((item: IFranchise, index: number) =>
-                <option key={`${item.Current_Franchise_ID}-${index}`} value={item.Current_Franchise_ID}>
+                <option key={`${item.Current_Franchise_ID}-${index}`} value={`${item.Current_Franchise_ID}-${index}`}>
                   {`[${item.Current_Franchise_ID}] ${item.Location_Name} ${item.Nickname} 
                   (${getYear(item.First_Date_Nickname_Used)}-${getYear(item.Last_Date_Nickname_Used)})`}
                 </option>
@@ -131,7 +136,7 @@ const Schedules: React.FC = () => {
               <Schedule />
             </ScheduleProvider> : showFranchiseSearch ?
             <ScheduleProvider
-              selectedFranchise={selectedFranchiseId}
+              selectedFranchise={getFranchiseIdForProvider(selectedFranchiseId)}
               selectedYear={selectedYear}
               selectedDate={''}
             >

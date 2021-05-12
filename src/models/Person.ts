@@ -11,12 +11,14 @@ const Person = types.model('Person', {
 })
 
 export const PersonStore = types.model('PersonStore', {
-  people: types.optional(types.maybeNull(types.array(Person)), null)
+  people: types.optional(types.maybeNull(types.array(Person)), null),
+  loading: types.boolean
 }).actions(self => {
   const load = flow(function* () {
+    applySnapshot(self, {loading: true})
     const response = yield fetch('https://www.mikebents.com/rs-data/people/')
     const json = yield response.json()
-    applySnapshot(self, {people: [...json]})
+    applySnapshot(self, {people: [...json], loading: false})
   })
 
   return {

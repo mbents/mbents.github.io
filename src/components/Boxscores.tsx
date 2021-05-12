@@ -1,4 +1,4 @@
-import { Grid, Typography } from '@material-ui/core'
+import { CircularProgress, Grid, Typography } from '@material-ui/core'
 import React, { useEffect, useState } from 'react'
 import { useBoxscoreStore } from '../contexts/BoxscoreContext'
 import GenericBreadcrumbs from './GenericBreadcrumbs'
@@ -17,7 +17,7 @@ const Boxscores: React.FC = () => {
   const personStore = usePersonStore()
   const { boxscore } = boxscoreStore
   const { ballparks } = ballparkStore
-  const { people } = personStore
+  const { people, loading } = personStore
 
   const [currentBallpark, setCurrentBallpark] = useState<IBallpark>()
 
@@ -51,13 +51,13 @@ const Boxscores: React.FC = () => {
           {currentBallpark &&
           <Typography>{`${currentBallpark?.NAME}, ${currentBallpark?.CITY}, ${currentBallpark?.STATE}`}</Typography>}
           <Score boxscore={boxscore} />
-          <Umpires boxscore={boxscore} people={people} />
+          {loading ? <CircularProgress /> : <Umpires boxscore={boxscore} people={people} />}
           <p>{`Attendance \u2013 ${boxscore.attendance}`}</p>
           <p>{`Time of game \u2013 ${getTimeOfGame(boxscore.time_of_game)}`}</p>
           <WeatherConditions boxscore={boxscore} />
         </Grid>
         <Grid item>
-          <Lineup boxscore={boxscore} people={people} />
+          {loading ? <CircularProgress /> : <Lineup boxscore={boxscore} people={people} />}
         </Grid>
       </Grid>}
     </React.Fragment>

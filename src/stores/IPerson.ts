@@ -9,5 +9,6 @@ export interface IPerson {
 }
 
 export interface IPersonStore {
-  people?: Array<IPerson>
+  people?: Array<IPerson>,
+  loading: boolean
 }

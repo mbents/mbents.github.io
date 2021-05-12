@@ -29,8 +29,8 @@ export default function FranchiseBreadcrumbs(props: IFranchiseBreadcrumbs) {
       {franchiseId && year ?
       <Link color="inherit" href={`/#/franchises/${franchiseId}`}>
         {franchiseId}
-      </Link> :
-      <Typography color="textPrimary">{franchiseId}</Typography>}
+      </Link> : franchiseId ?
+      <Typography color="textPrimary">{franchiseId}</Typography> : ''}
       {year &&
       <Typography color="textPrimary">{year}</Typography>}
     </Breadcrumbs>
